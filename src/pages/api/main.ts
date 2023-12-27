@@ -11,7 +11,7 @@ export default async function handler(
 
     res.status(200).json(users);
   } else if (req.method === "POST") {
-    const { id, task, status } = await req.body;
+    const { id, task, status, startDate, deadLine } = await req.body;
 
     try {
       const data = await prisma?.project.update({
@@ -20,6 +20,8 @@ export default async function handler(
             create: {
               title: task,
               status: status,
+              startDate: startDate,
+              Deadline: deadLine,
             },
           },
         },
@@ -27,7 +29,6 @@ export default async function handler(
           id: parseInt(id),
         },
       });
-
       res.status(200).json("created");
     } catch (error) {
       console.log(error);
@@ -35,28 +36,4 @@ export default async function handler(
       res.status(404).json("failed");
     }
   }
-
-  // } else if (req.method === "PUT") {
-  //   const { id, name, email } = req.body;
-  //   const updatedUser = await prisma.user.update({
-  //     where: { id },
-  //     data: {
-  //       name,
-  //       email,
-  //     },
-  //   });
-  //   res.status(200).json(updatedUser);
-  // } else if (req.method === "DELETE") {
-  //   const { id } = req.body;
-  //   await prisma.user.delete({
-  //     where: { id },
-  //   });
-  //   res.status(204).end();
-  // } else {
-  //   res.status(405).end();
-  // }
-}
-
-export function man() {
-  return "asdf";
 }

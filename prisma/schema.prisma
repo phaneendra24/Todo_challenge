@@ -21,8 +21,8 @@ model Todo {
   status    TodoStatus
   createdAt DateTime   @default(now())
   projectId Int
-  EndDate   DateTime   @default(now())
-  startDate DateTime   @default(now())
+  startDate DateTime
+  Deadline  DateTime
   project   Project    @relation(fields: [projectId], references: [id])
 }
 

@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Completecol from "../components/Colums/CompletedCol";
-import ReviewCol from "../components/Colums/InReviewcol";
-import ProgressCol from "../components/Colums/ProgressCol";
-import Todos from "../components/Colums/TodoCol";
-import Addnew from "../components/popups/AddNewPopup";
+import Completecol from "../_uicomponents/Colums/CompletedCol";
+import ReviewCol from "../_uicomponents/Colums/InReviewcol";
+import ProgressCol from "../_uicomponents/Colums/ProgressCol";
+import Todos from "../_uicomponents/Colums/TodoCol";
+import Addnew from "../_uicomponents/popups/AddNewPopup";
 
 import type { Todo } from "@prisma/client";
 

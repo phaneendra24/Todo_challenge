@@ -2,17 +2,16 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import type { $Enums, Todo } from "@prisma/client";
 
-type datatype =
-  | {
-      id: number;
-      title: string;
-      status: $Enums.TodoStatus;
-      createdAt: Date;
-      projectId: number;
-      EndDate: Date;
-      startDate: Date;
-    }[]
-  | undefined;
+
+type datatype = {
+  id: number;
+  title: string;
+  status: $Enums.TodoStatus;
+  createdAt: Date;
+  projectId: number;
+  startDate: Date;
+  Deadline: Date;
+}[] | undefined
 
 export default function Todos({
   data,
@@ -21,6 +20,12 @@ export default function Todos({
   data: datatype;
   setpopup: Dispatch<SetStateAction<boolean>>;
 }) {
+  if (data == undefined) {
+    return (
+      <div>err</div>
+    )
+
+  }
   return (
     <div className="">
       {/* popup */}
