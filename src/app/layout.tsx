@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Nav from "./components/Sidebar";
 import Sidebar from "./components/Sidebar";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +23,11 @@ export default function RootLayout({
         <div className="w-[1200px] ">
           <div
             className=" h-[60px] flex items-center pl-[24px] font-semibold border-b-[1px] border-l-[1px]  w-full
-      "
+              "
           >
             My projects
           </div>
+
           {children}
         </div>
       </body>
