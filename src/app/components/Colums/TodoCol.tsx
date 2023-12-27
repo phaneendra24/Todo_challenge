@@ -33,7 +33,10 @@ export default function Todos({
         <div className="flex flex-col gap-[10px] h-full">
           {data?.map((i) => {
             return (
-              <div className="taskbox h-[144px] flex flex-col gap-[10px] rounded-[8px] p-[16px]">
+              <div
+                className="taskbox h-[144px] flex flex-col gap-[10px] rounded-[8px] p-[16px]"
+                key={i.id}
+              >
                 <h1 className="font-semibold text-[16px]">{i.status}</h1>
                 <div className="flex  w-[186px] gap-[24px] text-[12px]">
                   <div className="gap-[4px]">
