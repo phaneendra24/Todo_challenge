@@ -6,19 +6,17 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method == "POST") {
-    // end point for getting todos
-    const { id } = req.body;
+    const { projectName } = req.body;
+
     try {
-      const data = await prisma?.todo.findMany({
-        where: {
-          projectId: parseInt(id),
+      const data = await prisma.project.create({
+        data: {
+          name: projectName,
         },
       });
       res.status(200).json(data);
-    } catch (error) {
-      console.log(error);
-
-      res.status(404).json(error);
+    } catch (e) {
+      res.status(400).json("error");
     }
   }
 }

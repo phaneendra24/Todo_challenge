@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Sidebar from "./_uicomponents/Sidebar";
 import "./globals.css";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,15 +16,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
-      <body className="w-[100vw]] flex h-[100vh]">
+      <body className="w-[100vw]] flex min-h-[100vh]">
         <Sidebar />
 
         <div className="w-[1200px] ">
           <div
             className=" h-[60px] flex items-center pl-[24px] font-semibold border-b-[1px] border-l-[1px]  w-full
               "
+            id="addNew"
           >
             My projects
           </div>

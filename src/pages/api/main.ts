@@ -12,6 +12,7 @@ export default async function handler(
     res.status(200).json(users);
   } else if (req.method === "POST") {
     const { id, task, status, startDate, deadLine } = await req.body;
+    console.log(task);
 
     try {
       const data = await prisma?.project.update({

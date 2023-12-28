@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import type { $Enums, Todo } from "@prisma/client";
-
+import Scroll from "../Scroll";
 
 type datatype = {
   id: number;
@@ -20,12 +20,8 @@ export default function Todos({
   data: datatype;
   setpopup: Dispatch<SetStateAction<boolean>>;
 }) {
-  if (data == undefined) {
-    return (
-      <div>err</div>
-    )
+  console.log(data);
 
-  }
   return (
     <div className="">
       {/* popup */}
@@ -36,13 +32,13 @@ export default function Todos({
         </div>
 
         <div className="flex flex-col gap-[10px] h-full">
-          {data?.map((i) => {
+          {data?.filter(item => item.status === "Todo")?.map((i) => {
             return (
               <div
                 className="taskbox h-[144px] flex flex-col gap-[10px] rounded-[8px] p-[16px]"
                 key={i.id}
               >
-                <h1 className="font-semibold text-[16px]">{i.status}</h1>
+                <h1 className="font-semibold text-[16px]">{i.title}</h1>
                 <div className="flex  w-[186px] gap-[24px] text-[12px]">
                   <div className="gap-[4px]">
                     <h1 className="text-[#777777]">start date</h1>
@@ -60,6 +56,8 @@ export default function Todos({
           })}
         </div>
 
+
+        {/* <Scroll targetId="addNew" key="addnew"> */}
         <button
           className="flex text-[12px] rounded-[8px] justify-center items-center text-[#3659E2] w-full h-[32px] bg-[#EBEEFC]"
           onClick={() => setpopup(true)}
@@ -73,6 +71,7 @@ export default function Todos({
           />
           Add new
         </button>
+        {/* </Scroll> */}
       </div>
     </div>
   );

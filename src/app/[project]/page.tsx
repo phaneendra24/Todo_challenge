@@ -1,13 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Completecol from "../_uicomponents/Colums/CompletedCol";
-import ReviewCol from "../_uicomponents/Colums/InReviewcol";
-import ProgressCol from "../_uicomponents/Colums/ProgressCol";
-import Todos from "../_uicomponents/Colums/TodoCol";
-import Addnew from "../_uicomponents/popups/AddNewPopup";
+import Completecol from "@/app/_uicomponents/Colums/CompletedCol";
+import ReviewCol from "@/app/_uicomponents/Colums/InReviewcol";
+import ProgressCol from "@/app/_uicomponents/Colums/ProgressCol";
+import Todos from "@/app/_uicomponents/Colums/TodoCol";
+import Addnew from "@/app/_uicomponents/popups/AddNewPopup";
 
 import type { Todo } from "@prisma/client";
+import Progress from "@/app/_uicomponents/Colums/ProgressCol";
+import InReview from "@/app/_uicomponents/Colums/InReviewcol";
+import Completed from "@/app/_uicomponents/Colums/CompletedCol";
+
+export const Design = () => {
+  return (
+    <>
+      <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
+      <div className="line h-[95%]  w-[1px] bg-[#D8E0FD] "></div>
+      <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
+    </>
+  )
+}
 
 export default function Page({
   params,
@@ -37,34 +50,29 @@ export default function Page({
       setdata(data);
     };
     fetchData();
-  }, []);
+  }, [popup]);
 
   return (
-    <div className=" relative  mt-[24px] h-full  grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-[20px] px-[24px]">
+    <div className=" relative mt-[24px] h-full  grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-[20px] px-[24px]">
       {popup ? <Addnew params={params} setpopup={setpopup} /> : null}
       <Todos setpopup={setpopup} data={data} />
-      <div className="top-[72px] left-[270.5px] items-center  flex flex-col  border-black  absolute">
-        <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
-        <div className="line h-[500px] w-[1px] bg-[#D8E0FD] "></div>
-        <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
+      <div className="hidden h-full  top-[72px] md:left-[253.5px]  lg:left-[261px] xl:left-[262.5px] items-center  md:flex flex-col  border-black  absolute">
+        <Design />
       </div>
-      <ProgressCol />
+
+      <Progress data={data} setpopup={setpopup} />
       {/* 525.5px */}
-      <div className="top-[72px] left-[525.5px] items-center  flex flex-col  border-black  absolute">
-        <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
-        <div className="line h-[500px] w-[1px] bg-[#D8E0FD] "></div>
-        <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
+      <div className=" hidden h-full left-[525.5px] lg:left-[508px] sm:flex flex-col items-center top-[72px] border-black  absolute">
+        <Design />
       </div>
-      <ReviewCol />
+      <InReview data={data} setpopup={setpopup} />
 
       {/* 783.5px */}
 
-      <div className="top-[72px] left-[783.5px] items-center  flex flex-col  border-black  absolute">
-        <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
-        <div className="line h-[500px] w-[1px] bg-[#D8E0FD] "></div>
-        <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
+      <div className="hidden h-full top-[72px] left-[760.5px] items-center  xl:flex flex-col  border-black  absolute">
+        <Design />
       </div>
-      <Completecol />
+      <Completed data={data} setpopup={setpopup} />
     </div>
   );
 }

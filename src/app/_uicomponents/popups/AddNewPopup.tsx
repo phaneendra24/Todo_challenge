@@ -1,8 +1,9 @@
+import DatePickerDemo from "@/app/_uicomponents/DatePicker";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
-import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
+import Scroll from "../Scroll";
 
 export default function Addnew({
   setpopup,
@@ -13,33 +14,58 @@ export default function Addnew({
     project: string;
   };
 }) {
-  const [value, setValue] = useState("2020-02-03");
+  const [startDate, setStartDate] = React.useState<Date>();
+  const [deadLine, setDeadline] = useState<Date>();
 
   const [task, setTask] = useState("");
 
   const [status, setstatus] = useState("Todo");
 
+  console.log(startDate);
+
   const submitAction = async () => {
+    {/* task name div */ }
+    <div className="px-[24px]">
+      <h1 className="font-normal text-[12px]">Name of the task</h1>
+      <input
+        className="w-[598px] outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        placeholder="Text"
+      />
+    </div>
+
     console.log(params);
 
-    const res = await fetch("/api/main", {
-      method: "POST",
-      headers: {
-        Accept: "application.json",
-        "Content-Type": "application/json",
-      },
+    if (startDate != undefined && deadLine != undefined) {
+      const startString = startDate.toISOString();
+      const deadlineString = startDate.toISOString();
 
-      body: JSON.stringify({ id: params.project, task: task, status: status }),
-    });
+      const res = await fetch("/api/main", {
+        method: "POST",
+        headers: {
+          Accept: "application.json",
+          "Content-Type": "application/json",
+        },
 
-    const data = res.json();
+        body: JSON.stringify({
+          id: params.project,
+          task: task,
+          status: status,
+          startDate: startString,
+          deadLine: deadlineString,
+        }),
+      });
 
-    setpopup(false);
-    console.log(data);
+      const data = res.json();
+
+      setpopup(false);
+      console.log(data);
+    }
   };
 
   return (
-    <div className="absolute  z-[20] left-0 top-0 w-full flex justify-center items-center h-full">
+    <div className="fixed  z-[20]  w-full mt-10 h-full">
       <div className="text-[12px] w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
         {/* title div */}
         <div className=" flex justify-between h-[52px] items-center px-[24px]">
@@ -70,21 +96,11 @@ export default function Addnew({
         <div className="h-[68px] px-[24px] flex">
           <div className="w-1/2">
             <h1>startDate</h1>
-            <Datetime
-              input={true}
-              value={value}
-              className="appearance-none shadow border  rounded py-3 px-2 text-gray-darker w-full"
-              onChange={() => setValue(value)}
-            />
+            <DatePickerDemo date={startDate} setDate={setStartDate} />
           </div>
           <div className="w-1/2">
             <h1>startDate</h1>
-            <Datetime
-              input={true}
-              value={value}
-              className="appearance-none shadow border  rounded py-3 px-2 text-gray-darker w-full"
-              onChange={() => setValue(value)}
-            />
+            <DatePickerDemo date={deadLine} setDate={setDeadline} />
           </div>
         </div>
 
