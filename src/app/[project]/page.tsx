@@ -9,7 +9,7 @@ import InReview from "@/app/_uicomponents/Colums/InReviewcol";
 import Progress from "@/app/_uicomponents/Colums/ProgressCol";
 import type { Todo } from "@prisma/client";
 
-export const Design = () => {
+const Design = () => {
   return (
     <>
       <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
