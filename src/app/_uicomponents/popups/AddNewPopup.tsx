@@ -3,7 +3,6 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 import "react-datetime/css/react-datetime.css";
-import Scroll from "../Scroll";
 
 export default function Addnew({
   setpopup,
@@ -65,7 +64,7 @@ export default function Addnew({
   };
 
   return (
-    <div className="fixed  z-[20]  w-full mt-10 h-full">
+    <div className="fixed bg-transparent backdrop-brightness-75 flex justify-center items-center top-0 left-0 z-[20]  w-full  h-full">
       <div className="text-[12px] w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
         {/* title div */}
         <div className=" flex justify-between h-[52px] items-center px-[24px]">

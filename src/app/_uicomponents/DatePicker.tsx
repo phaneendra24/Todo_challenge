@@ -1,16 +1,16 @@
 "use client";
-import * as React from "react";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { format, setDate } from "date-fns";
+import { format } from "date-fns";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
 
 export default function DatePicker({
   date,

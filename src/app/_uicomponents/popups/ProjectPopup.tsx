@@ -37,7 +37,7 @@ export default function ProjectPopup({ projectPop, setProjectPopup }: { projectP
             </div>
 
             <div>
-                <h1 className="text-[#3659E2] font-normal  leading-6">Project's Name</h1>
+                <h1 className="text-[#3659E2] font-normal  leading-6">Project Name</h1>
                 <form onSubmit={(e) => submit(e)} action="" className="gap-[10px] flex flex-col">
                     <input onChange={(e) => setname(e.target.value)} required className="border-[1px] outline-none w-full h-[44px] rounded-[8px] px-[12px]" />
                     <span className="h-5"></span>

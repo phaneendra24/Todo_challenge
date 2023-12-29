@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Sidebar from "./_uicomponents/Sidebar";
 import "./globals.css";
-import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +18,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="w-[100vw]] flex min-h-[100vh]">
+      <body className="relative w-[100vw]] flex min-h-[100vh]">
         <Sidebar />
 
         <div className="w-[1200px] ">

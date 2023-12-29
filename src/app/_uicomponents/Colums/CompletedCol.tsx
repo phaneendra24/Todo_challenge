@@ -1,6 +1,9 @@
+import type { $Enums } from "@prisma/client";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
-import type { $Enums, Todo } from "@prisma/client";
+import convert from "../Dateconverter";
+import EditFn from "../popups/EditPopup";
+import TaskContainer from "./TaskContainer";
 
 type datatype =
   | {
@@ -17,12 +20,19 @@ type datatype =
 export default function Completed({
   data,
   setpopup,
+  seteditpopup,
+  editpopup
 }: {
   data: datatype;
   setpopup: Dispatch<SetStateAction<boolean>>;
+  editpopup: boolean
+  seteditpopup: Dispatch<SetStateAction<boolean>>
 }) {
+
+
+
   return (
-    <div className="">
+    <div className="" >
       {/* popup */}
       <div className="flex flex-col gap-[20px]">
         <div className="w-[68px] flex justify-center gap-[4px] items-center h-[32px] rounded-[20px] bg-[#EBEEFC] ">
@@ -30,27 +40,11 @@ export default function Completed({
           <h1 className="text-[12px] text-[#3659E2]">Completed</h1>
         </div>
 
-        <div className="flex flex-col gap-[10px] h-full">
+        <div className="flex flex-col gap-[10px] h-full" >
           {data?.filter(i => i.status === "COMPLETED").map((i) => {
             return (
-              <div
-                className="taskbox h-[144px] flex flex-col gap-[10px] rounded-[8px] p-[16px]"
-                key={i.id}
-              >
-                <h1 className="font-semibold text-[16px]">{i.title}</h1>
-                <div className="flex  w-[186px] gap-[24px] text-[12px]">
-                  <div className="gap-[4px]">
-                    <h1 className="text-[#777777]">start date</h1>
-                    <p className="rounded-[8px] bg-[#EBEEFC] px-[8px] text-[#3659E2] ">
-                      01/12/23
-                    </p>
-                  </div>
-                  <div className="flex flex-col">
-                    <h1 className="text-[#777777]">Deadline</h1>
-                    01/12/23
-                  </div>
-                </div>
-              </div>
+              <TaskContainer i={i} key={i.id} seteditpopup={seteditpopup} editpopup={editpopup} />
+
             );
           })}
         </div>
@@ -69,6 +63,6 @@ export default function Completed({
           Add new
         </button>
       </div>
-    </div>
+    </div >
   );
 }

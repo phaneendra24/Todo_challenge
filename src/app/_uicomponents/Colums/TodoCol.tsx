@@ -1,7 +1,9 @@
+import type { $Enums } from "@prisma/client";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
-import type { $Enums, Todo } from "@prisma/client";
-import Scroll from "../Scroll";
+import { Dispatch, SetStateAction } from "react";
+import convert from "../Dateconverter";
+import TaskContainer from "./TaskContainer";
+
 
 type datatype = {
   id: number;
@@ -16,11 +18,14 @@ type datatype = {
 export default function Todos({
   data,
   setpopup,
+  seteditpopup,
+  editpopup
 }: {
   data: datatype;
   setpopup: Dispatch<SetStateAction<boolean>>;
+  editpopup: boolean
+  seteditpopup: Dispatch<SetStateAction<boolean>>
 }) {
-  console.log(data);
 
   return (
     <div className="">
@@ -34,24 +39,7 @@ export default function Todos({
         <div className="flex flex-col gap-[10px] h-full">
           {data?.filter(item => item.status === "Todo")?.map((i) => {
             return (
-              <div
-                className="taskbox h-[144px] flex flex-col gap-[10px] rounded-[8px] p-[16px]"
-                key={i.id}
-              >
-                <h1 className="font-semibold text-[16px]">{i.title}</h1>
-                <div className="flex  w-[186px] gap-[24px] text-[12px]">
-                  <div className="gap-[4px]">
-                    <h1 className="text-[#777777]">start date</h1>
-                    <p className="rounded-[8px] bg-[#EBEEFC] px-[8px] text-[#3659E2] ">
-                      01/12/23
-                    </p>
-                  </div>
-                  <div className="flex flex-col">
-                    <h1 className="text-[#777777]">Deadline</h1>
-                    01/12/23
-                  </div>
-                </div>
-              </div>
+              <TaskContainer i={i} key={i.id} seteditpopup={seteditpopup} editpopup={editpopup} />
             );
           })}
         </div>

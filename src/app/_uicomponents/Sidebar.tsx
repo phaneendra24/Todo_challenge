@@ -3,7 +3,7 @@ import type { Project } from "@prisma/client";
 // import { man } from "@/pages/api/main";
 import Image from "next/image";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectPopup from "./popups/ProjectPopup";
 
 export default function Sidebar() {
