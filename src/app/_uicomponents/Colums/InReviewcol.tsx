@@ -27,7 +27,7 @@ export default function InReview({
 
 }) {
   return (
-    <div className=" text-center col-span-1 md:col-span-4 lg:col-span-6 xl:col-span-5">
+    <div className="h-[80vh] overflow-scroll scrollbar-hide px-1 text-center col-span-1 md:col-span-4 lg:col-span-6 xl:col-span-5">
       {/* popup */}
       <div className="flex flex-col gap-[20px]">
         <div className="w-fit px-[12px] flex justify-center gap-[4px] items-center h-[32px] rounded-[20px] bg-[#EFF8FF] ">
@@ -45,7 +45,7 @@ export default function InReview({
         </div>
 
         <button
-          className="flex text-[12px] rounded-[8px] justify-center items-center text-[#3FA1E3] w-full h-[32px] bg-[#EBEEFC]"
+          className="flex sticky bottom-0 text-[12px] rounded-[8px] justify-center items-center text-[#3FA1E3] w-full h-[32px] bg-[#EBEEFC]"
           onClick={() => setpopup(true)}
         >
           <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">

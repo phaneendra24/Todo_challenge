@@ -18,9 +18,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="relative w-[100vw]] flex min-h-[100vh]">
+      <body className="relative w-[100vw]] flex h-screen overflow-hidden ">
         <Sidebar />
-        <div className="w-[1200px] ">
+        <div className="h-[100vh] w-full">
           {children}
         </div>
       </body>

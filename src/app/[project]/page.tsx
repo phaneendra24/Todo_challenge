@@ -58,29 +58,27 @@ export default function Page({
       >
         {loading ? <span className="animate-pulse">Loading...</span> : projectName}
       </div>
-      <div className=" mt-[24px] h-full  grid  md:grid-cols-9 lg:grid-cols-20 xl:grid-cols-23 px-[24px] gap-y-2">
+      <div className=" mt-[24px] overflow-scroll scrollbar-hide rounded-sm   h-[85vh] grid  md:grid-cols-9 lg:grid-cols-20 xl:grid-cols-23 px-[24px] gap-y-2">
         {popup ? <Addnew params={params} setpopup={setpopup} /> : null}
         <Todos setpopup={setpopup} data={data} settrigger={settrigger} />
         {/* firts line */}
         <div className=" col-span-1  hidden md:block  justify-center">
-          <div className="w-[95%] items-center h-full flex justify-center">
+          <div className=" h-full flex items-center justify-center">
             <Line />
           </div>
         </div>
         <Progress setpopup={setpopup} data={data} settrigger={settrigger} />
         {/* second line */}
         <div className=" col-span-1 hidden lg:block justify-center">
-          <div className="w-[95%] items-center h-full flex justify-center">
+          <div className=" items-center h-full flex justify-center">
             <Line />
           </div>
         </div>
         <InReview setpopup={setpopup} data={data} settrigger={settrigger} />
-
-
-        {/* 783.5px */}
+        {/* third line*/}
 
         <div className=" col-span-1 hidden md:block lg:hidden xl:block  justify-center">
-          <div className="w-[95%] items-center h-full flex justify-center">
+          <div className=" items-center h-full flex justify-center">
             <Line />
           </div>
         </div>

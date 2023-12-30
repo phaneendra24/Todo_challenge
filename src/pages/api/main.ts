@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import prisma from "./libs/prisma";
+import { reverse } from "dns";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +10,8 @@ export default async function handler(
   if (req.method === "GET") {
     const users = await prisma?.project.findMany();
 
-    res.status(200).json(users);
+    const data = users.reverse();
+    res.status(200).json(data);
   } else if (req.method === "POST") {
     const { id, task, status, startDate, deadLine } = await req.body;
     console.log(task);
