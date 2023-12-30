@@ -58,7 +58,8 @@ export default function Page({
       >
         {loading ? <span className="animate-pulse">Loading...</span> : projectName}
       </div>
-      <div className=" mt-[24px] overflow-scroll scrollbar-hide rounded-sm   h-[85vh] grid  md:grid-cols-9 lg:grid-cols-20 xl:grid-cols-23 px-[24px] gap-y-2">
+      <div className={`mt-[24px] overflow-scroll scrollbar-hide rounded-sm   h-[85vh] grid  md:grid-cols-9 lg:grid-cols-20 xl:grid-cols-23 px-[24px] gap-y-2`}>
+        {loading ? <div className=" absolute top-1/2 left-1/2 animate-bounce z-[100]">███████▒▒▒ 70%</div> : ""}
         {popup ? <Addnew params={params} setpopup={setpopup} /> : null}
         <Todos setpopup={setpopup} data={data} settrigger={settrigger} />
         {/* firts line */}
@@ -83,7 +84,7 @@ export default function Page({
           </div>
         </div>
         <Completed setpopup={setpopup} data={data} settrigger={settrigger} />
-      </div>
+      </div >
     </>
   );
 }

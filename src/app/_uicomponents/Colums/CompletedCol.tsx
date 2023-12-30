@@ -40,7 +40,7 @@ export default function Completed({
         </div>
 
         <div className="flex flex-col gap-[10px] h-full">
-          {data?.filter(item => item.status === "Todo")?.map((i) => {
+          {data?.filter(item => item.status === "COMPLETED")?.map((i) => {
             return (
               <TaskContainer i={i} key={i.id} color="#12bb23" bg="#e7f8e9" settrigger={settrigger} />
             );
