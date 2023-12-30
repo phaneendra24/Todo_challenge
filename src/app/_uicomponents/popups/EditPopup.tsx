@@ -9,10 +9,13 @@ export default function EditFn({
     seteditpopup,
     id,
     i,
+    settrigger
 }: {
     i: Todo
     seteditpopup: Dispatch<SetStateAction<boolean>>;
     id: number
+    settrigger: Dispatch<SetStateAction<boolean>>;
+
 }) {
     const [startDate, setStartDate] = React.useState<Date | undefined>(i.startDate);
     const [DeadLine, setDeadline] = useState<Date | undefined>(i.Deadline);
@@ -21,20 +24,19 @@ export default function EditFn({
 
     const [status, setstatus] = useState<string | undefined>(i.status);
 
-    useEffect(() => {
-        const handleKeyPress = (event: { keyCode: number; }) => {
-            if (event.keyCode === 27) {
-                seteditpopup(false)
-            }
-        };
-        window.addEventListener('keydown', handleKeyPress);
-        return () => {
-            window.removeEventListener('keydown', handleKeyPress);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const handleKeyPress = (event: { keyCode: number; }) => {
+    //         if (event.keyCode === 27) {
+    //             seteditpopup(false)
+    //         }
+    //     };
+    //     window.addEventListener('keydown', handleKeyPress);
+    //     return () => {
+    //         window.removeEventListener('keydown', handleKeyPress);
+    //     };
+    // }, []);
 
     const updateTheEdit = async () => {
-
 
         const res = await fetch('api/Edit', {
             method: "POST",
@@ -52,10 +54,9 @@ export default function EditFn({
 
         })
         const data = await res.json()
-        console.log(data);
-
         if (res.status == 200) {
             seteditpopup(false)
+            settrigger((prev) => !prev)
         }
 
     }

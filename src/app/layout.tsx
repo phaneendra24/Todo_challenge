@@ -20,16 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="relative w-[100vw]] flex min-h-[100vh]">
         <Sidebar />
-
         <div className="w-[1200px] ">
-          <div
-            className=" h-[60px] flex items-center pl-[24px] font-semibold border-b-[1px] border-l-[1px]  w-full
-              "
-            id="addNew"
-          >
-            My projects
-          </div>
-
           {children}
         </div>
       </body>

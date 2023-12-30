@@ -5,13 +5,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProjectPopup from "./popups/ProjectPopup";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
+
+
+  const params = usePathname()
+
+
+
+
   const [projects, setprojects] = useState<Project[]>();
   const [loading, setLoading] = useState(true);
   const [projectPop, setProjectPopup] = useState(false)
 
   useEffect(() => {
+    console.log(params);
     const fetchData = async () => {
       const response = await fetch("/api/main");
       const json = await response.json();
@@ -21,6 +30,8 @@ export default function Sidebar() {
 
     fetchData();
   }, [projectPop]);
+
+
 
   return (
     <>
@@ -38,15 +49,15 @@ export default function Sidebar() {
           alt="failed to load"
         />
 
-        <div className="flex w-[240px] flex-col items-center gap-[10px] justify-center ">
+        <div className="flex w-[240px] min-h-40 flex-col items-center gap-[10px] justify-center ">
           {loading ? (
-            <> Loading</>
+            <span className="animate-bounce"> Loading...</span>
           ) : (
             <>
               {projects?.map((i) => {
                 return (
                   <Link href={`${i.id}`} className="w-fit h-fit" key={i.id}>
-                    <button className="h-[44px] text-[16px] bg-[#EBEEFC] rounded-[8px] w-[220px]">
+                    <button className={`h-[44px] text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] w-[220px]`}>
                       {i.name}
                     </button>
                   </Link>

@@ -1,6 +1,6 @@
 import DatePickerDemo from "@/app/_uicomponents/DatePicker";
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import "react-datetime/css/react-datetime.css";
 
@@ -14,27 +14,64 @@ export default function Addnew({
   };
 }) {
   const [startDate, setStartDate] = React.useState<Date>();
+  const [startDateErr, setStartDateErr] = React.useState(false);
+
   const [deadLine, setDeadline] = useState<Date>();
+  const [deadLineErr, setDeadlineErr] = useState(false);
 
   const [task, setTask] = useState("");
-
+  const [taskerr, setTaskerr] = useState(false)
   const [status, setstatus] = useState("Todo");
 
   console.log(startDate);
 
+  // useEffect(() => {
+  //   const handleKeyPress = (event: { keyCode: number; }) => {
+  //     if (event.keyCode === 27) {
+  //       setpopup(false)
+  //     }
+  //   };
+  //   window.addEventListener('keydown', handleKeyPress);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyPress);
+  //   };
+  // }, []);
+
   const submitAction = async () => {
     {/* task name div */ }
-    <div className="px-[24px]">
-      <h1 className="font-normal text-[12px]">Name of the task</h1>
-      <input
-        className="w-[598px] outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        placeholder="Text"
-      />
-    </div>
-
-    console.log(params);
+    if (task == "") {
+      if (startDate == undefined) {
+        setStartDateErr(true)
+      }
+      else {
+        setStartDateErr(false)
+      }
+      if (deadLine == undefined) {
+        setDeadlineErr(true)
+      }
+      else {
+        setDeadlineErr(false)
+      }
+      setTaskerr(true)
+      return;
+    }
+    else if (startDate == undefined) {
+      setTaskerr(false)
+      if (deadLine == undefined) {
+        setDeadlineErr(true)
+      }
+      else {
+        setDeadlineErr(false)
+      }
+      setStartDateErr(true)
+      return;
+    }
+    else if (deadLine == undefined) {
+      setStartDateErr(false)
+      setDeadlineErr(true)
+      return;
+    }
+    setDeadlineErr(false)
 
     if (startDate != undefined && deadLine != undefined) {
       const startString = startDate.toISOString();
@@ -89,17 +126,23 @@ export default function Addnew({
             onChange={(e) => setTask(e.target.value)}
             placeholder="Text"
           />
+
+          <span className=" text-[12px] text-[#E92b2b]">{taskerr ? "Please fill the task name" : ""}  </span>
         </div>
 
         {/* dates section */}
         <div className="h-[68px] px-[24px] flex">
-          <div className="w-1/2">
+          <div className="w-1/2 flex flex-col">
             <h1>startDate</h1>
             <DatePickerDemo date={startDate} setDate={setStartDate} />
+            <span className=" text-[12px] text-[#E92b2b]">{startDateErr ? "Please fill the start date" : ""}  </span>
+
           </div>
-          <div className="w-1/2">
-            <h1>startDate</h1>
+          <div className="w-1/2 flex flex-col">
+            <h1>Deadline</h1>
             <DatePickerDemo date={deadLine} setDate={setDeadline} />
+            <span className=" text-[12px] text-[#E92b2b]">{deadLineErr ? "Please fill the deadline date" : ""}  </span>
+
           </div>
         </div>
 

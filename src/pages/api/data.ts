@@ -14,7 +14,18 @@ export default async function handler(
           projectId: parseInt(id),
         },
       });
-      res.status(200).json(data);
+
+      const projectname = await prisma.project.findUnique({
+        where: {
+          id: parseInt(id),
+        },
+      });
+      console.log(projectname?.name);
+
+      res.status(200).json({
+        data: data,
+        projectname: projectname?.name,
+      });
     } catch (error) {
       console.log(error);
 

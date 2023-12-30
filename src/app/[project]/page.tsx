@@ -8,16 +8,9 @@ import Completed from "@/app/_uicomponents/Colums/CompletedCol";
 import InReview from "@/app/_uicomponents/Colums/InReviewcol";
 import Progress from "@/app/_uicomponents/Colums/ProgressCol";
 import type { Todo } from "@prisma/client";
+import Line from "../_uicomponents/Line";
+// import Line from "../_uicomponents/Line";
 
-const Design = () => {
-  return (
-    <>
-      <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
-      <div className="line h-[95%]  w-[1px] bg-[#D8E0FD] "></div>
-      <div className="circle rounded-full bg-[#D8E0FD]  w-1 h-1"></div>
-    </>
-  )
-}
 
 export default function Page({
   params,
@@ -26,16 +19,16 @@ export default function Page({
     project: string;
   };
 }) {
+
+  const [trigger, settrigger] = useState(false)
   const [popup, setpopup] = useState(false);
-  const [editpopup, seteditpopup] = useState(false)
-
-
   const [data, setdata] = useState<Todo[]>();
+  const [projectName, setProjectName] = useState("")
+  const [loading, setloading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       console.log("fetching");
-
       const res = await fetch("/api/data", {
         method: "POST",
         headers: {
@@ -48,33 +41,51 @@ export default function Page({
         }),
       });
       const data = await res.json();
-      setdata(data);
+
+      setdata(data.data);
+      setProjectName(data.projectname)
+      setloading(false)
+
     };
     fetchData();
-  }, [popup, editpopup]);
+  }, [popup, trigger]);
 
   return (
-    <div className="  mt-[24px] h-full  grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-[20px] px-[24px]">
-      {popup ? <Addnew params={params} setpopup={setpopup} /> : null}
-      <Todos setpopup={setpopup} data={data} seteditpopup={seteditpopup} editpopup={editpopup} />
-      <div className="hidden h-full  top-[72px] md:left-[253.5px]  lg:left-[261px] xl:left-[262.5px] items-center  md:flex flex-col  border-black  absolute">
-        <Design />
+    <>
+      <div
+        className=" h-[60px] flex items-center pl-[24px] font-semibold border-b-[1px] border-l-[1px]  w-full  "
+        id="addNew"
+      >
+        {loading ? <span className="animate-pulse">Loading...</span> : projectName}
       </div>
-      <Progress setpopup={setpopup} data={data} seteditpopup={seteditpopup} editpopup={editpopup} />
+      <div className=" mt-[24px] h-full  grid  md:grid-cols-9 lg:grid-cols-20 xl:grid-cols-23 px-[24px] gap-y-2">
+        {popup ? <Addnew params={params} setpopup={setpopup} /> : null}
+        <Todos setpopup={setpopup} data={data} settrigger={settrigger} />
+        {/* firts line */}
+        <div className=" col-span-1  hidden md:block  justify-center">
+          <div className="w-[95%] items-center h-full flex justify-center">
+            <Line />
+          </div>
+        </div>
+        <Progress setpopup={setpopup} data={data} settrigger={settrigger} />
+        {/* second line */}
+        <div className=" col-span-1 hidden lg:block justify-center">
+          <div className="w-[95%] items-center h-full flex justify-center">
+            <Line />
+          </div>
+        </div>
+        <InReview setpopup={setpopup} data={data} settrigger={settrigger} />
 
-      {/* 525.5px */}
-      <div className=" hidden h-full left-[525.5px] lg:left-[508px] sm:flex flex-col items-center top-[72px] border-black  absolute">
-        <Design />
+
+        {/* 783.5px */}
+
+        <div className=" col-span-1 hidden md:block lg:hidden xl:block  justify-center">
+          <div className="w-[95%] items-center h-full flex justify-center">
+            <Line />
+          </div>
+        </div>
+        <Completed setpopup={setpopup} data={data} settrigger={settrigger} />
       </div>
-      <InReview setpopup={setpopup} data={data} seteditpopup={seteditpopup} editpopup={editpopup} />
-
-
-      {/* 783.5px */}
-
-      <div className="hidden h-full top-[72px] left-[760.5px] items-center  xl:flex flex-col  border-black  absolute">
-        <Design />
-      </div>
-      <Completed setpopup={setpopup} data={data} seteditpopup={seteditpopup} editpopup={editpopup} />
-    </div>
+    </>
   );
 }
