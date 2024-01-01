@@ -69,7 +69,7 @@ export default function Sidebar() {
           )}
         </div>
 
-        <div onClick={() => setProjectPopup(true)} className="cursor-pointer pl-[10px] flex items-center gap-[10px] text-[#3659E2] h-[32px]  border-t-[1px] text-[12px]">
+        <div onClick={() => setProjectPopup(true)} className=" cursor-pointer pl-[24px] flex items-center gap-[10px] text-[#3659E2] h-[32px]  border-t-[1px] text-[12px]">
           <span>+</span>
           Add new Project
         </div>

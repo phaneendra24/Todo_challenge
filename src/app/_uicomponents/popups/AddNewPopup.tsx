@@ -42,6 +42,8 @@ export default function Addnew({
         setDeadlineErr(false)
       }
       setTaskerr(true)
+      setloading(false)
+
       return;
     }
     else if (startDate == undefined) {
@@ -53,12 +55,16 @@ export default function Addnew({
         setDeadlineErr(false)
       }
       setStartDateErr(true)
+      setloading(false)
+
       return;
     }
     else if (deadLine == undefined) {
       setTaskerr(false)
       setStartDateErr(false)
       setDeadlineErr(true)
+      setloading(false)
+
       return;
     }
     setDeadlineErr(false)
@@ -96,7 +102,7 @@ export default function Addnew({
     <div className="fixed bg-transparent backdrop-brightness-75 flex justify-center items-center top-0 left-0 z-[20]  w-full  h-full">
       <div className="text-[12px] w-[95%] sm:w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
         {/* title div */}
-        <div className=" flex justify-between h-[52px] items-center px-[24px]">
+        <div className=" flex border-b-[1px] justify-between h-[52px] items-center px-[24px]">
           <h1 className="text-[#263FA0]">Add new task</h1>
           <button onClick={() => setpopup(false)}>
             <Image
@@ -111,7 +117,7 @@ export default function Addnew({
 
         {/* task name div */}
         <div className="px-[24px]">
-          <h1 className="font-normal text-[12px]">Name of the task</h1>
+          <h1 className="font-normal text-[12px]">Name of the Task</h1>
           <input
             className="w-full  outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
             value={task}
@@ -125,7 +131,7 @@ export default function Addnew({
         {/* dates section */}
         <div className="h-[68px] px-[24px] flex gap-[12px]">
           <div className="w-1/2 flex flex-col ">
-            <h1>startDate</h1>
+            <h1>Start date</h1>
             <DatePickerDemo date={startDate} setDate={setStartDate} />
             <span className=" text-[12px] text-[#E92b2b]">{startDateErr ? "Please fill the start date" : ""}  </span>
 
@@ -141,7 +147,7 @@ export default function Addnew({
         {/* status */}
 
         <div className="px-[24px]">
-          <h1 className="text-[12px]">status</h1>
+          <h1 className="text-[12px]">Status</h1>
           <select
             name=""
             id=""
@@ -150,9 +156,9 @@ export default function Addnew({
             value={status}
           >
             <option value="Todo">todo</option>
+            <option value="IN_PROGRESS">In progress</option>
+            <option value="IN_REVIEW">In review</option>
             <option value="COMPLETED">completed</option>
-            <option value="IN_PROGRESS">In_progress</option>
-            <option value="IN_REVIEW">In_review</option>
           </select>
         </div>
 

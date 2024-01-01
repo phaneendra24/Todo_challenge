@@ -47,7 +47,7 @@ export default function Home() {
           </div>
         </div>
 
-        <HomeCol color="EE46BC" bg="FDF2FA" name="In progress" />
+        <HomeCol color="EE46BC" bg="FDF2FA" name="In Progress" />
         {/* 525.5px */}
         <div className=" col-span-1 hidden lg:block justify-center">
           <div className="w-[95%] items-center h-full flex justify-center">

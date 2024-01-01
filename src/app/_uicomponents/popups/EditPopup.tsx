@@ -91,7 +91,6 @@ export default function EditFn({
                 })
 
             })
-            const data = await res.json()
             if (res.status == 200) {
                 seteditpopup(false)
                 settrigger((prev) => !prev)
@@ -102,10 +101,10 @@ export default function EditFn({
 
     return (
         <div key={i.id} className="fixed bg-transparent backdrop-brightness-75 flex justify-center items-center top-0 left-0 z-[20]  w-full  h-full">
-            <div className="text-[12px] w-[95%] sm:w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
+            <div className=" text-[12px] w-[95%] sm:w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
                 {/* title div */}
-                <div className=" flex justify-between h-[52px] items-center px-[24px]">
-                    <h1 className="text-[#263FA0] font-normal text-[16px]">Edit the task</h1>
+                <div className="border-b-[1px] flex justify-between h-[52px] items-center px-[24px]">
+                    <h1 className="text-[#263FA0] font-normal text-[16px]">Edit the Task</h1>
                     <button onClick={() => {
                         seteditpopup(false)
                     }
@@ -138,7 +137,7 @@ export default function EditFn({
                 {/* dates section */}
                 <div className="h-[68px] px-[24px] flex gap-[12px]">
                     <div className="w-1/2 flex text-left flex-col ">
-                        <h1>startDate</h1>
+                        <h1>Start Date</h1>
                         <DatePickerDemo date={startDate} setDate={setStartDate} />
                         <span className=" text-[12px] text-[#E92b2b]">{startDateErr ? "Please fill the start date" : ""}  </span>
 
@@ -163,9 +162,9 @@ export default function EditFn({
                         value={status}
                     >
                         <option value="Todo">todo</option>
-                        <option value="COMPLETED">completed</option>
-                        <option value="IN_PROGRESS">In_progress</option>
-                        <option value="IN_REVIEW">In_review</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="IN_REVIEW">In Review</option>
+                        <option value="COMPLETED">Completed</option>
                     </select>
                 </div>
 
