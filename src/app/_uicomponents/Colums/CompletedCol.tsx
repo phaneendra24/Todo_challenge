@@ -34,9 +34,11 @@ export default function Completed({
     <div className="h-[60vh] sm:h-[80vh]  relative overflow-scroll scrollbar-hide px-1 text-center col-span-1 md:col-span-4 lg:col-span-6 xl:col-span-5" >
       {/* popup */}
       <div className="flex flex-col gap-[20px]">
-        <div className="w-fit px-[12px] flex justify-center gap-[4px] items-center h-[32px] rounded-[20px] bg-[#e7f8e9] ">
-          <span className="w-[6.4px] h-[6.4px] rounded-full bg-[#12bb23]"></span>
-          <h1 className="text-[12px] text-[#12bb23]">Completed</h1>
+        <div className="sticky top-0 bg-white">
+          <div className="w-fit px-[12px] flex justify-center gap-[4px] items-center h-[32px] rounded-[20px] bg-[#e7f8e9] ">
+            <span className="w-[6.4px] h-[6.4px] rounded-full bg-[#12bb23]"></span>
+            <h1 className="text-[12px] text-[#12bb23]">Completed</h1>
+          </div>
         </div>
 
         <div className="flex flex-col gap-[10px] h-full">
