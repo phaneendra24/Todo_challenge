@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import prisma from "./libs/prisma";
-import { reverse } from "dns";
 
 export default async function handler(
   req: NextApiRequest,
