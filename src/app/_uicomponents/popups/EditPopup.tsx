@@ -19,53 +19,84 @@ export default function EditFn({
 }) {
     const [startDate, setStartDate] = React.useState<Date | undefined>(i.startDate);
     const [DeadLine, setDeadline] = useState<Date | undefined>(i.Deadline);
-
     const [task, setTask] = useState(i.title);
-
     const [status, setstatus] = useState<string | undefined>(i.status);
 
-    // useEffect(() => {
-    //     const handleKeyPress = (event: { keyCode: number; }) => {
-    //         if (event.keyCode === 27) {
-    //             seteditpopup(false)
-    //         }
-    //     };
-    //     window.addEventListener('keydown', handleKeyPress);
-    //     return () => {
-    //         window.removeEventListener('keydown', handleKeyPress);
-    //     };
-    // }, []);
+
+    const [startDateErr, setStartDateErr] = React.useState(false);
+    const [deadLineErr, setDeadlineErr] = useState(false);
+    const [taskerr, setTaskerr] = useState(false)
+
+
+
 
     const updateTheEdit = async () => {
-
-        const res = await fetch('api/Edit', {
-            method: "POST",
-            headers: {
-                Accept: "application.json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                startDate: startDate,
-                DeadLine: DeadLine,
-                status: status,
-                task: task,
-                id: id
-            })
-
-        })
-        const data = await res.json()
-        if (res.status == 200) {
-            seteditpopup(false)
-            settrigger((prev) => !prev)
+        if (task == "") {
+            if (startDate == undefined) {
+                setStartDateErr(true)
+            }
+            else {
+                setStartDateErr(false)
+            }
+            if (DeadLine == undefined) {
+                setDeadlineErr(true)
+            }
+            else {
+                setDeadlineErr(false)
+            }
+            setTaskerr(true)
+            return;
         }
+        else if (startDate == undefined) {
+            setTaskerr(false)
+            if (DeadLine == undefined) {
+                setDeadlineErr(true)
+            }
+            else {
+                setDeadlineErr(false)
+            }
+            setStartDateErr(true)
+            return;
+        }
+        else if (DeadLine == undefined) {
+            setTaskerr(false)
+            setStartDateErr(false)
+            setDeadlineErr(true)
+            return;
+        }
+        setDeadlineErr(false)
 
+        if (startDate != undefined && DeadLine != undefined) {
+
+            const res = await fetch('api/Edit', {
+                method: "POST",
+                headers: {
+                    Accept: "application.json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    startDate: startDate,
+                    DeadLine: DeadLine,
+                    status: status,
+                    task: task,
+                    id: id
+                })
+
+            })
+            const data = await res.json()
+            if (res.status == 200) {
+                seteditpopup(false)
+                settrigger((prev) => !prev)
+            }
+        }
     }
+
     return (
         <div key={i.id} className="fixed bg-transparent backdrop-brightness-75 flex justify-center items-center top-0 left-0 z-[20]  w-full  h-full">
-            <div className="text-[12px] w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
+            <div className="text-[12px] w-[95%] sm:w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
                 {/* title div */}
                 <div className=" flex justify-between h-[52px] items-center px-[24px]">
-                    <h1 className="text-[#263FA0]">Edit the task</h1>
+                    <h1 className="text-[#263FA0] font-normal text-[16px]">Edit the task</h1>
                     <button onClick={() => {
                         seteditpopup(false)
                     }
@@ -83,32 +114,38 @@ export default function EditFn({
                 </div>
 
                 {/* task name div */}
-                <div className="px-[24px]">
+                <div className="px-[24px] flex flex-col items-start">
                     <h1 className="font-normal text-[12px]">Name of the task</h1>
                     <input
-                        className="w-[598px] outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
+                        className="w-full sm:w-[598px] outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
                         value={task}
                         onChange={(e) => setTask(e.target.value)}
                         placeholder="Text"
                     />
+                    <span className=" text-[12px] text-[#E92b2b]">{taskerr ? "Please fill the task name" : ""}  </span>
+
                 </div>
 
                 {/* dates section */}
-                <div className="h-[68px] px-[24px] flex">
-                    <div className="w-1/2">
-                        <h1>startDate</h1>
+                <div className="h-[68px]  px-[24px] flex gap-[12px] justify-between">
+                    <div className="text-left w-[50%]">
+                        <h1>Start date</h1>
                         <DatePickerDemo date={startDate} setDate={setStartDate} />
+                        <span className=" text-[12px] text-[#E92b2b]">{startDateErr ? "Please fill the start date" : ""}  </span>
+
                     </div>
-                    <div className="w-1/2">
-                        <h1>startDate</h1>
+                    <div className="text-left w-[50%]">
+                        <h1>DeadLine</h1>
                         <DatePickerDemo date={DeadLine} setDate={setDeadline} />
+                        <span className=" text-[12px] text-[#E92b2b]">{deadLineErr ? "Please fill the deadline date" : ""}  </span>
+
                     </div>
                 </div>
 
                 {/* status */}
 
-                <div className="px-[24px]">
-                    <h1 className="text-[12px]">status</h1>
+                <div className="px-[24px] text-left">
+                    <h1 className="text-[12px]">Status</h1>
                     <select
                         name=""
                         id=""

@@ -32,19 +32,20 @@ export default function Sidebar() {
           <ProjectPopup projectPop={projectPop} setProjectPopup={setProjectPopup} />
           : null
       }
-      <div className="w-[30%]  sm:w-fit h-fit flex flex-col gap-[24px] ">
-        <div className="w-[240px] h-[60px]">
+      <div className="w-[30%] sidebar min-h-[100vh] sm:w-fit  flex flex-col gap-[24px] ">
+        <div className="w-full sm:w-[240px] gap-[10px] h-[60px] flex sm:flex-row font-bold items-center  border-b-[1px]  justify-center">
 
           <Image
-            src="/icon.svg"
-            className="w-full h-full border-b-[1px]"
+            src="/logo.svg"
+            className="w-[16px] h-[15.4px] border-b-[1px]"
             width={240}
             height={60}
             alt="failed to load"
           />
+          <h1 className="text-[12px] sm:text-[1em]">Task boards</h1>
         </div>
 
-        <div className="flex  sm:w-[240px] max-h-[70vh] overflow-scroll scrollbar-hide min-h-40 flex-col items-center gap-[10px] justify-center ">
+        <div className="flex  sm:w-[240px] max-h-[70vh] overflow-scroll scrollbar-hide min-h-40 px-[10px] flex-col items-center gap-[10px] ">
           {loading ? (
             <span className="animate-bounce"> Loading...</span>
           ) : (
@@ -52,7 +53,7 @@ export default function Sidebar() {
               {projects?.map((i) => {
                 return (
                   <Link href={`${i.id}`} className="w-full" key={i.id}>
-                    <button className={`p-1 h-[44px] w-full 1 text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] sm:w-[220px]`}>
+                    <button className={`p-1 h-[44px] w-full  text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] `}>
                       {i.name}
                     </button>
                   </Link>

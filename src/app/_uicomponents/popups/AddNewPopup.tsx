@@ -14,13 +14,13 @@ export default function Addnew({
   };
 }) {
   const [startDate, setStartDate] = React.useState<Date>();
-  const [startDateErr, setStartDateErr] = React.useState(false);
-
   const [deadLine, setDeadline] = useState<Date>();
-  const [deadLineErr, setDeadlineErr] = useState(false);
-
   const [task, setTask] = useState("");
+
+  const [startDateErr, setStartDateErr] = React.useState(false);
+  const [deadLineErr, setDeadlineErr] = useState(false);
   const [taskerr, setTaskerr] = useState(false)
+
   const [status, setstatus] = useState("Todo");
 
   console.log(startDate);
@@ -67,6 +67,7 @@ export default function Addnew({
       return;
     }
     else if (deadLine == undefined) {
+      setTaskerr(false)
       setStartDateErr(false)
       setDeadlineErr(true)
       return;
@@ -102,7 +103,7 @@ export default function Addnew({
 
   return (
     <div className="fixed bg-transparent backdrop-brightness-75 flex justify-center items-center top-0 left-0 z-[20]  w-full  h-full">
-      <div className="text-[12px] w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
+      <div className="text-[12px] w-[95%] sm:w-[670px] flex flex-col gap-[24px]  bg-white border-[1px] rounded-[8px] h-[388px]  ">
         {/* title div */}
         <div className=" flex justify-between h-[52px] items-center px-[24px]">
           <h1 className="text-[#263FA0]">Add new task</h1>
@@ -121,7 +122,7 @@ export default function Addnew({
         <div className="px-[24px]">
           <h1 className="font-normal text-[12px]">Name of the task</h1>
           <input
-            className="w-[598px] outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
+            className="w-full  outline-none h-[44px] px-[12px] rounded-[8px] border-[1px]"
             value={task}
             onChange={(e) => setTask(e.target.value)}
             placeholder="Text"
@@ -131,8 +132,8 @@ export default function Addnew({
         </div>
 
         {/* dates section */}
-        <div className="h-[68px] px-[24px] flex">
-          <div className="w-1/2 flex flex-col">
+        <div className="h-[68px] px-[24px] flex gap-[12px]">
+          <div className="w-1/2 flex flex-col ">
             <h1>startDate</h1>
             <DatePickerDemo date={startDate} setDate={setStartDate} />
             <span className=" text-[12px] text-[#E92b2b]">{startDateErr ? "Please fill the start date" : ""}  </span>
