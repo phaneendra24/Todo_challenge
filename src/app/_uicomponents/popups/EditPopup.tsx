@@ -48,6 +48,7 @@ export default function EditFn({
                 setDeadlineErr(false)
             }
             setTaskerr(true)
+            setloading(false)
             return;
         }
         else if (startDate == undefined) {
@@ -59,12 +60,16 @@ export default function EditFn({
                 setDeadlineErr(false)
             }
             setStartDateErr(true)
+            setloading(false)
+
             return;
         }
         else if (DeadLine == undefined) {
             setTaskerr(false)
             setStartDateErr(false)
             setDeadlineErr(true)
+            setloading(false)
+
             return;
         }
         setDeadlineErr(false)

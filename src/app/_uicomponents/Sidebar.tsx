@@ -33,7 +33,7 @@ export default function Sidebar() {
           : null
       }
       <div className="w-[40%] sidebar min-h-[100vh] sm:w-fit  flex flex-col gap-[24px] ">
-        <div className="w-full sm:w-[240px] gap-[10px] h-[60px] flex sm:flex-row font-bold items-center  border-b-[1px]  justify-center">
+        <div className="w-full sm:w-[240px] gap-[10px] h-[60px] flex sm:flex-row font-bold items-center  border-b-[1px]  justify-start px-[24px]">
 
           <Image
             src="/logo.svg"
@@ -55,17 +55,17 @@ export default function Sidebar() {
               <span className="sr-only">Loading...</span>
             </div>
           ) : (
-            <>
+            <div className="">
               {projects?.map((i) => {
                 return (
                   <Link href={`${i.id}`} className="w-full" key={i.id}>
-                    <button className={` p-1 h-[44px] w-full text-[12px] sm:text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] `}>
+                    <button className={`text-left pl-[10px] p-1 h-[44px] w-full text-[12px] sm:text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] `}>
                       {i.name}
                     </button>
                   </Link>
                 );
               })}
-            </>
+            </div>
           )}
         </div>
 
