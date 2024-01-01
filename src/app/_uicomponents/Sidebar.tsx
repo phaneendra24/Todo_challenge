@@ -53,7 +53,7 @@ export default function Sidebar() {
               {projects?.map((i) => {
                 return (
                   <Link href={`${i.id}`} className="w-full" key={i.id}>
-                    <button className={`p-1 h-[44px] w-full  text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] `}>
+                    <button className={` p-1 h-[44px] w-full text-[12px] sm:text-[16px] ${params === `/${i.id.toString()}` ? "bg-[#EBEEFC]" : ""} rounded-[8px] `}>
                       {i.name}
                     </button>
                   </Link>

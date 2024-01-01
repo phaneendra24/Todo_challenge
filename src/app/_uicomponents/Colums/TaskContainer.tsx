@@ -19,7 +19,7 @@ export default function TaskContainer({ i, color, bg, settrigger }: {
                     <EditFn seteditpopup={seteditpopup} id={i.id} i={i} settrigger={settrigger} /> : null
             }
             <div
-                className="taskbox  cursor-pointer h-[144px]  flex flex-col gap-[10px] rounded-[8px] p-[16px]"
+                className="taskbox  cursor-pointer min-h-[144px]  flex flex-col gap-[10px] rounded-[8px] p-[16px]"
                 onClick={() => seteditpopup(true)
                 }
             >
