@@ -26,6 +26,7 @@ export default function Addnew({
   const [loading, setloading] = useState(false)
 
   const submitAction = async () => {
+    setloading(true)
     {/* task name div */ }
     if (task == "") {
       if (startDate == undefined) {
@@ -84,7 +85,9 @@ export default function Addnew({
 
       const data = res.json();
 
+      setloading(false)
       setpopup(false);
+
       console.log(data);
     }
   };
@@ -155,7 +158,7 @@ export default function Addnew({
 
         {/* submission div */}
         <div className="h-[52px] px-[24px] flex justify-end gap-[10px] text-[12px] font-normal">
-          <button className="text-[#1B72c2] bg-[#EBEEFC] w-[69px] h-[32px] rounded-[8px]">
+          <button onClick={() => setpopup(false)} className="text-[#1B72c2] bg-[#EBEEFC] w-[69px] h-[32px] rounded-[8px]">
             Cancel
           </button>
           <button

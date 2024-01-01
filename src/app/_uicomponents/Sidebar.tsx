@@ -32,7 +32,7 @@ export default function Sidebar() {
           <ProjectPopup projectPop={projectPop} setProjectPopup={setProjectPopup} />
           : null
       }
-      <div className="w-[30%] sidebar min-h-[100vh] sm:w-fit  flex flex-col gap-[24px] ">
+      <div className="w-[40%] sidebar min-h-[100vh] sm:w-fit  flex flex-col gap-[24px] ">
         <div className="w-full sm:w-[240px] gap-[10px] h-[60px] flex sm:flex-row font-bold items-center  border-b-[1px]  justify-center">
 
           <Image

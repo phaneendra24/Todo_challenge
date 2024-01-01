@@ -92,6 +92,7 @@ export default function EditFn({
                 settrigger((prev) => !prev)
             }
         }
+        setloading(false)
     }
 
     return (
@@ -165,7 +166,9 @@ export default function EditFn({
 
                 {/* submission div */}
                 <div className="h-[52px] px-[24px] flex justify-end gap-[10px] text-[12px] font-normal">
-                    <button className="text-[#1B72c2] bg-[#EBEEFC] w-[69px] h-[32px] rounded-[8px]">
+                    <button onClick={() => {
+                        seteditpopup(false)
+                    }} className="text-[#1B72c2] bg-[#EBEEFC] w-[69px] h-[32px] rounded-[8px]">
                         Cancel
                     </button>
                     <button
